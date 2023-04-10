@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.amazing.intercom.dao.FollowDAO">
+    <select id="findAll" resultType="Follow">
+        select * from follow
+    </select>
+    <select id="get" parameterType="int" resultType="Follow">
+        select * from follow where id=#{id}
+    </select>
+    <insert id="save"  parameterType="follow" >
+        insert into follow(u_id,f_u_id) values(#{u_id},#{f_u_id})
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete from follow where id=#{id}
+    </delete>
+    <update id="update" parameterType="follow">
+        update from follow u_id=#{u_id},f_u_id=#{f_u_id} where id=#{id}
+    </update>
+    
+</mapper>
