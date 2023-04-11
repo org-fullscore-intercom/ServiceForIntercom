@@ -11,6 +11,11 @@ public class Follow {
         this.f_u_id = f_u_id;
     }
 
+    public Follow(int u_id, int f_u_id) {
+        this.u_id=u_id;
+        this.f_u_id=f_u_id;
+    }
+
     @Override
     public String toString() {
         return "Follow{" +

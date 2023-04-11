@@ -7,14 +7,26 @@
     <select id="findAll" resultType="Follow">
         select * from follow
     </select>
+    <select id="findFollows" resultType="Follow">
+        select * from follow where u_id=#{u_id}
+    </select>
+    <select id="findFans" resultType="Follow">
+        select * from follow where f_u_id=#{f_u_id}
+    </select>
     <select id="get" parameterType="int" resultType="Follow">
         select * from follow where id=#{id}
     </select>
-    <insert id="save"  parameterType="follow" >
+    <select id="getByUF" resultType="Follow">
+        select * from follow where u_id=#{u_id} AND f_u_id=#{f_u_id}
+    </select>
+    <insert id="save"  parameterType="follow" useGeneratedKeys="true" keyProperty="id">
         insert into follow(u_id,f_u_id) values(#{u_id},#{f_u_id})
     </insert>
     <delete id="delete" parameterType="int">
         delete from follow where id=#{id}
+    </delete>
+    <delete id="deleteByUF" parameterType="int">
+        delete from follow where u_id=#{u_id} and f_u_id=#{f_u_id}
     </delete>
     <update id="update" parameterType="follow">
         update from follow u_id=#{u_id},f_u_id=#{f_u_id} where id=#{id}
