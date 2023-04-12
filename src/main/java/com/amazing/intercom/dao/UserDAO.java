@@ -12,4 +12,6 @@ public interface UserDAO {
     int update(User user);
     List<User> findAll();
     User get(int id);
+    User login(String account,String password);
+    int getByAccount(String account);
 }
