@@ -4,20 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.amazing.intercom.dao.RoomRecordDAO">
-    <select id="findAll" resultType="roomRecord">
-        select * from room_record
+    <select id="findByR" resultType="roomRecord">
+        select * from room_record where r_id=#{r_id}
     </select>
     <select id="get" parameterType="int" resultType="roomRecord">
         select * from room_record where id=#{id}
     </select>
-    <insert id="save"  parameterType="roomRecord" >
+
+    <insert id="save"  parameterType="roomRecord" useGeneratedKeys="true" keyProperty="id">
         insert into room_record(u_id,r_id,state) values(#{u_id},#{r_id},#{state})
     </insert>
     <delete id="delete" parameterType="int">
         delete from room_record where id=#{id}
     </delete>
     <update id="update" parameterType="roomRecord">
-        update from room_record u_id=#{u_id},r_id=#{r_id},state=#{state} where id=#{id}
+        update from room_record state=#{state} where u_id=#{u_id} and r_id=#{r_id}
     </update>
-
+    <select id="countByRS" resultType="int">
+        select count(*) from room_record where r_id=#{r_id} and state=1
+    </select>
+    <select id="countByR" resultType="int">
+        select count(*) from room_record where r_id=#{r_id}
+    </select>
+    <select id="countByUR" resultType="int">
+        select count(*) from room_record where r_id=#{r_id} and u_id=#{u_id}
+    </select>
+    <select id="onlineRR" resultType="roomRecord">
+        select * from room_record where r_id=#{r_id} and u_id=#{u_id}
+    </select>
 </mapper>
