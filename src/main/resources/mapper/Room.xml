@@ -10,7 +10,7 @@
     <select id="get" parameterType="int" resultType="Room">
         select * from room where id=#{id}
     </select>
-    <insert id="save"  parameterType="Room" >
+    <insert id="save"  parameterType="Room" useGeneratedKeys="true" keyProperty="id">
         insert into room(name,introduction,type,owner) values(#{name},#{introduction},#{type},#{owner})
     </insert>
     <delete id="delete" parameterType="int">
@@ -19,5 +19,10 @@
     <update id="update" parameterType="Room">
         update from room name=#{name},introduction=#{introduction},type=#{type},owner=#{owner} where id=#{id}
     </update>
-
+    <select id="findByType" resultType="Room">
+        select * from room where type=#{type}
+    </select>
+    <select id="findByOwner" resultType="room">
+        select * from room where owner=#{owner}
+    </select>
 </mapper>

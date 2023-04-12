@@ -4,10 +4,10 @@ public class Room {
     private int id;
     private String name;
     private String introduction;
-    private Type type;
+    private String type;
     private int owner;
 
-    public Room(int id, String name, String introduction, Type type, int owner) {
+    public Room(int id, String name, String introduction, String type, int owner) {
         this.id = id;
         this.name = name;
         this.introduction = introduction;
@@ -39,11 +39,11 @@ public class Room {
         this.introduction = introduction;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -10,7 +10,9 @@ import java.util.List;
 public interface RoomDAO {
     List<Room> findAll();
     int save(Room room);
-    void delete(int id);
+    int delete(int id);
     Room get(int id);
     int update(Room room);
+    List<Room> findByType(String type);
+    List<Room> findByOwner(int owner);
 }
