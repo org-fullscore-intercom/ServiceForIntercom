@@ -14,6 +14,9 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public int add(Follow follow) {
+        if (followDAO.countByUF(follow.getU_id(),follow.getF_u_id())==1){
+            return -1;
+        }
         followDAO.save(follow);
         System.out.println(follow.getId());
         return follow.getId();

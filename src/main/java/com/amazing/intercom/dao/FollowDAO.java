@@ -18,7 +18,7 @@ public interface FollowDAO {
     int delete(int id);
     int deleteByUF(@Param("u_id") int u_id,@Param("f_u_id") int f_u_id);
     Follow get(int id);
-    Follow getByUF(@Param("u_id") int u_id,@Param("f_u_id") int f_u_id);
+    int countByUF(@Param("u_id") int u_id,@Param("f_u_id") int f_u_id);
     int update(Follow follow);
 
 }

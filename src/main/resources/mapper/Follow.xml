@@ -16,8 +16,8 @@
     <select id="get" parameterType="int" resultType="Follow">
         select * from follow where id=#{id}
     </select>
-    <select id="getByUF" resultType="Follow">
-        select * from follow where u_id=#{u_id} AND f_u_id=#{f_u_id}
+    <select id="countByUF" resultType="int">
+        select count(*) from follow where u_id=#{u_id} AND f_u_id=#{f_u_id}
     </select>
     <insert id="save"  parameterType="follow" useGeneratedKeys="true" keyProperty="id">
         insert into follow(u_id,f_u_id) values(#{u_id},#{f_u_id})
