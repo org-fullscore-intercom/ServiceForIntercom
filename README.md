@@ -15,7 +15,7 @@ the backport of the application
 
 首先在项目的pom.xml添加相关配置
 
-![image-20230427162553564](../AppData/Roaming/Typora/typora-user-images/image-20230427162553564.png)
+![image-20230427162553564](https://cdn.jsdelivr.net/gh/Toreme/BlogImage@main/img/image-20230427162553564.png)
 
 然后运行maven test，在target中生成了jacoco报告
 
