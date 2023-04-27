@@ -1,3 +1,3 @@
-[![Java CI with Maven](https://github.com/org-fullscore-intercom/ServiceForIntercom/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/org-fullscore-intercom/ServiceForIntercom/actions/workflows/maven.yml)
+[![GitHub Actions Demo](https://github.com/org-fullscore-intercom/ServiceForIntercom/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/org-fullscore-intercom/ServiceForIntercom/actions/workflows/github-actions-demo.yml)
 # ServiceForIntercom
 the backport of the application
