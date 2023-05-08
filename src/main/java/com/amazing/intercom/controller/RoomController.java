@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.amazing.intercom.pojo.Room;
 import com.amazing.intercom.pojo.Type;
 import com.amazing.intercom.service.RoomService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,19 +35,22 @@ public class RoomController {
     }
     @GetMapping("/getRooms")
     @ResponseBody
-    public String gets(){
+    public String gets(@RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size);
         List<Room> rooms = rs.getRooms();
         return JSON.toJSONString(rooms);
     }
     @GetMapping("/getRooms/{type}")
     @ResponseBody
-    public String type(@PathVariable String type){
+    public String type(@PathVariable String type,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size);
         List<Room> roomsByType = rs.getRoomsByType(type);
         return JSON.toJSONString(roomsByType);
     }
     @GetMapping("/getRooms/{owner}")
     @ResponseBody
-    public String owner(@PathVariable int owner){
+    public String owner(@PathVariable int owner,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size);
         List<Room> roomsByOwner = rs.getRoomsByOwner(owner);
         return JSON.toJSONString(roomsByOwner);
     }

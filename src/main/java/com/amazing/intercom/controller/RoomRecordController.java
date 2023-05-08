@@ -5,12 +5,11 @@ import com.amazing.intercom.pojo.RoomRecord;
 import com.amazing.intercom.pojo.User;
 import com.amazing.intercom.service.RoomRecordService;
 import com.amazing.intercom.service.UserService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,8 @@ public class RoomRecordController {
 
     @GetMapping("/history/{r_id}")
     @ResponseBody
-    public String history(@PathVariable int r_id){
+    public String history(@PathVariable int r_id, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size);
         List<RoomRecord> roomRecords = rrs.historyRR(r_id);
         return JSON.toJSONString(roomRecords);
     }
@@ -61,7 +61,8 @@ public class RoomRecordController {
     }
     @GetMapping("/onlineUsers/{r_id}")
     @ResponseBody
-    public String onlineUs(@PathVariable int r_id){
+    public String onlineUs(@PathVariable int r_id,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size);
         List<RoomRecord> roomRecords = rrs.onlineRR(r_id);
         ArrayList<User> users=new ArrayList<>();
         for (RoomRecord rr : roomRecords){

@@ -6,9 +6,11 @@ import com.amazing.intercom.pojo.RoomRecord;
 import com.amazing.intercom.pojo.User;
 import com.amazing.intercom.service.FollowService;
 import com.amazing.intercom.service.UserService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ public class FollowController {
 
     @GetMapping("/follows")
     @ResponseBody
-    public String follows(int u_id){
+    public String follows(int u_id,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size,"id desc");
         List<Follow> follows = followService.getFollows(u_id);
         ArrayList<User> users=new ArrayList<>();
         for (Follow f : follows){
@@ -49,7 +52,8 @@ public class FollowController {
     }
     @GetMapping("/fans")
     @ResponseBody
-    public String fans(int f_u_id){
+    public String fans(int f_u_id,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size,"id desc");
         List<Follow> fans = followService.getFans(f_u_id);
         ArrayList<User> users=new ArrayList<>();
         for (Follow f : fans){
