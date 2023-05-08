@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 @Controller
 public class FileController {
@@ -23,10 +22,10 @@ public class FileController {
             }
             //获取文件名
             String fileName=file.getOriginalFilename();
-            log.println("上传的文件名："+fileName);
+            System.out.println("上传的文件名："+fileName);
             //获取文件后缀名
             String suffixName=fileName.substring(fileName.lastIndexOf("."));
-            log.println("文件后缀名："+suffixName);
+            System.out.println("文件后缀名："+suffixName);
             //设置文件存储路径
             String filePath="../../../../resources/static/avatar/";
             String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\";
