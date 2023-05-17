@@ -21,8 +21,7 @@ the backport of the application
 
 ![image-20230427162646607](https://cdn.jsdelivr.net/gh/Toreme/BlogImage@main/img/image-20230427162646607.png)
 
-![image-20230427162506933](https://cdn.jsdelivr.net/gh/Toreme/BlogImage@main/img/image-20230427162506933.png)
-
+![image-20230517220420595](https://cdn.jsdelivr.net/gh/Toreme/BlogImage@main/img/image-20230517220420595.png)
 ## 1.3 GitHub Action 持续集成
 
 使用 Maven 构建和测试 Java
