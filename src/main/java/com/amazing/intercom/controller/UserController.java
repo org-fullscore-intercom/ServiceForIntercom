@@ -22,11 +22,11 @@ public class UserController {
     @GetMapping("/addUser")
     @ResponseBody
     public String add(String name,String account,String password,String avatar){
-        if (avatar.equals("")) avatar="fav.png";
+        if (avatar==null) avatar="fav.png";
         User user = new User(0, name, account, password, avatar);
         //如果账号存在，则不能新建
         if (userService.getUserByAccount(user.getAccount())!=0)
-            return null;
+            return "null";
         return JSON.toJSONString(userService.addUser(user));
     }
     @GetMapping("/getUser")
