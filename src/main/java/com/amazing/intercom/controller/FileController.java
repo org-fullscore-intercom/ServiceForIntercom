@@ -102,11 +102,8 @@ public class FileController {
             //获取文件名
             String fileName=System.currentTimeMillis()+".wav";
             System.out.println("将上传的文件名："+fileName);
-            //获取文件后缀名
-            String suffixName=file.getOriginalFilename().substring(fileName.lastIndexOf("."));
-            System.out.println("原文件后缀名："+suffixName);
             //设置文件存储路径
-            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\avatar\\";
+            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\sounds\\";
             String path=filePath+fileName;
             File dest=new File(path);
             //检测是否存在该目录
@@ -115,10 +112,60 @@ public class FileController {
             }
             //写入文件
             file.transferTo(dest);
-            return fileName+"."+suffixName;
+            return fileName;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @GetMapping("/download_sound")
+    @ResponseBody
+    public String downloadSound(HttpServletRequest request, HttpServletResponse response){
+        String fileName=request.getParameter("fileName");
+        System.out.println("下载sound文件:"+fileName);
+        if (fileName!=null){
+            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\sounds\\";
+            File file =new File(filePath+fileName);
+            if (file.exists()){
+                response.setContentType("application/force-download");
+                response.addHeader("Content-Disposition","attachment;fileName="+fileName);
+                byte[] buffer=new byte[1024];
+                FileInputStream fis =null;
+                BufferedInputStream bis = null;
+                try{
+                    fis=new FileInputStream(file);
+                    response.setContentLength(fis.available());
+                    bis=new BufferedInputStream(fis);
+                    OutputStream os=response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while(i!=-1){
+                        os.write(buffer,0,i);
+                        i=bis.read(buffer);
+                    }
+                    os.flush();
+                    os.close();
+                    return "下载成功";
+                }catch (Exception e){
+                    e.printStackTrace();
+                }finally {
+                    if (bis!=null){
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis!=null){
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        return "下载失败";
     }
 }
