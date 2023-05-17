@@ -23,7 +23,7 @@ public class TestRoomDAO {
     }
     @Test
     public void delete(){
-        System.out.println(dao.delete(2));
+        System.out.println(dao.delete(52));
     }
     @Test
     public void get(){
@@ -31,7 +31,7 @@ public class TestRoomDAO {
     }
     @Test
     public void update(){
-        Room room = new Room(1, "test", "a room for test", "87654321", 1);
+        Room room = new Room(10, "test", "a room for test", "4280391411", 1);
         System.out.println(dao.update(room));
     }
     @Test

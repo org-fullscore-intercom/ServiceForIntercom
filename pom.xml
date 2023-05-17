@@ -68,7 +68,7 @@
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.4</version>
+            <version>0.8.7</version>
         </dependency>
     </dependencies>
 
@@ -81,13 +81,18 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skip>true</skip>
+                    <skip>false</skip>
+                    <includes>
+<!--                        <include>**/Test*.java</include>-->
+<!--                        <include>**/service/*Test.java</include>-->
+                        <include>**/controller/*Test.java</include>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
+                <version>0.8.7</version>
                 <configuration>
                     <!--指定生成 .exec 文件的存放位置-->
                     <destFile>target/coverage-reports/jacoco-unit.exec</destFile>

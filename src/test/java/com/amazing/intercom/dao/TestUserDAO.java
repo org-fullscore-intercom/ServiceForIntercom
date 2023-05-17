@@ -19,12 +19,12 @@ public class TestUserDAO {
     }
     @Test
     public void save(){
-        User user = new User(0,"root","admin","admin","fav.png");
+        User user = new User(0,"root","admin123","admin","fav.png");
         dao.save(user);
     }
     @Test
     public void delete(){
-        System.out.println(dao.delete(3));
+        System.out.println(dao.delete(26));
     }
     @Test
     public void update(){

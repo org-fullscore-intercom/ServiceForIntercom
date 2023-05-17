@@ -36,24 +36,24 @@ public class TestFollowDAO {
     }
     @Test
     public void save(){
-        Follow follow = new Follow(0,3,3);
+        Follow follow = new Follow(0,2,3);
         System.out.println(dao.save(follow));
     }
     @Test
     public void delete(){
-        System.out.println(dao.delete(5));
+        System.out.println(dao.delete(4));
     }
     @Test
     public void deleteByUF(){
-        System.out.println(dao.deleteByUF(3,3));
+        System.out.println(dao.deleteByUF(1,3));
     }
     @Test
     public void countByUF(){
-        System.out.println(dao.countByUF(1,3));
+        System.out.println(dao.countByUF(1,2));
     }
     @Test
     public void update(){
-        Follow follow = new Follow(4,3,2);
+        Follow follow = new Follow(2,1,3);
         System.out.println(dao.update(follow));
     }
 

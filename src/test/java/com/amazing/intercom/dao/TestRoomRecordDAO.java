@@ -26,12 +26,12 @@ public class TestRoomRecordDAO {
     }
     @Test
     public void save(){
-        RoomRecord roomRecord = new RoomRecord(0, 3, 1, 0);
+        RoomRecord roomRecord = new RoomRecord(0, 1, 1, 0);
         System.out.println(dao.save(roomRecord));
     }
     @Test
     public void delete(){
-        System.out.println(dao.delete(1));
+        System.out.println(dao.delete(5));
     }
     @Test
     public void update(){
