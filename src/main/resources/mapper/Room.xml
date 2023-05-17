@@ -17,7 +17,7 @@
         delete from room where id=#{id}
     </delete>
     <update id="update" parameterType="Room">
-        update from room name=#{name},introduction=#{introduction},type=#{type},owner=#{owner} where id=#{id}
+        update room set name=#{name},introduction=#{introduction},type=#{type},owner=#{owner} where id=#{id}
     </update>
     <select id="findByType" resultType="Room">
         select * from room where type=#{type}

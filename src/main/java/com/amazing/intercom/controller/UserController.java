@@ -21,10 +21,11 @@ public class UserController {
     }
     @GetMapping("/addUser")
     @ResponseBody
-    public int add(String name,String account,String password,String avatar){
+    public User add(String name,String account,String password,String avatar){
         User user = new User(0, name, account, password, avatar);
+        //如果账号存在，则不能新建
         if (userService.getUserByAccount(user.getAccount())!=0)
-            return -1;
+            return null;
         return userService.addUser(user);
     }
     @GetMapping("/getUser")

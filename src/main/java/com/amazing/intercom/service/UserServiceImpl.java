@@ -15,9 +15,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int addUser(User user) {
+    public User addUser(User user) {
         userDAO.save(user);
-        return user.getId();
+        return userDAO.get(user.getId());
     }
 
     @Override

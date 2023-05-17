@@ -59,9 +59,9 @@ public class RoomRecordController {
     public boolean come(int u_id,int r_id){
         return rrs.come(u_id, r_id);
     }
-    @GetMapping("/onlineUsers/{r_id}")
+    @GetMapping("/onlineUsers")
     @ResponseBody
-    public String onlineUs(@PathVariable int r_id,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+    public String onlineUs(int r_id,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
         PageHelper.startPage(start,size);
         List<RoomRecord> roomRecords = rrs.onlineRR(r_id);
         ArrayList<User> users=new ArrayList<>();

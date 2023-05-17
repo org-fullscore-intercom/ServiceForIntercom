@@ -29,7 +29,7 @@
         delete from follow where u_id=#{u_id} and f_u_id=#{f_u_id}
     </delete>
     <update id="update" parameterType="follow">
-        update from follow u_id=#{u_id},f_u_id=#{f_u_id} where id=#{id}
+        update follow set u_id=#{u_id},f_u_id=#{f_u_id} where id=#{id}
     </update>
     
 </mapper>

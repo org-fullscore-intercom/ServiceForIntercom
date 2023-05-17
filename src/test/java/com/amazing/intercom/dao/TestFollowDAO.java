@@ -16,16 +16,45 @@ import java.util.List;
 public class TestFollowDAO {
     @Autowired
     private FollowDAO dao;
-    @Test
-    public void test(){
-        System.out.println(dao);
-        List<Follow> all = dao.findAll();
-        System.out.println(all);
 
-    }
     @Test
     public void get(){
         Follow follow = dao.get(1);
         System.out.println(follow);
     }
+    @Test
+    public void findAll(){
+        System.out.println(dao.findAll());
+    }
+    @Test
+    public void findFollows(){
+        System.out.println(dao.findFollows(1));
+    }
+    @Test
+    public void findFans(){
+        System.out.println(dao.findFans(1));
+    }
+    @Test
+    public void save(){
+        Follow follow = new Follow(0,3,3);
+        System.out.println(dao.save(follow));
+    }
+    @Test
+    public void delete(){
+        System.out.println(dao.delete(5));
+    }
+    @Test
+    public void deleteByUF(){
+        System.out.println(dao.deleteByUF(3,3));
+    }
+    @Test
+    public void countByUF(){
+        System.out.println(dao.countByUF(1,3));
+    }
+    @Test
+    public void update(){
+        Follow follow = new Follow(4,3,2);
+        System.out.println(dao.update(follow));
+    }
+
 }

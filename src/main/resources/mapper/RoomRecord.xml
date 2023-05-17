@@ -18,7 +18,7 @@
         delete from room_record where id=#{id}
     </delete>
     <update id="update" parameterType="roomRecord">
-        update from room_record state=#{state} where u_id=#{u_id} and r_id=#{r_id}
+        update room_record set state=#{state} where u_id=#{u_id} and r_id=#{r_id}
     </update>
     <select id="countByRS" resultType="int">
         select count(*) from room_record where r_id=#{r_id} and state=1
@@ -27,9 +27,9 @@
         select count(*) from room_record where r_id=#{r_id}
     </select>
     <select id="countByUR" resultType="int">
-        select count(*) from room_record where r_id=#{r_id} and u_id=#{u_id}
+        select count(*) from room_record where u_id=#{u_id} and r_id=#{r_id}
     </select>
     <select id="onlineRR" resultType="roomRecord">
-        select * from room_record where r_id=#{r_id} and u_id=#{u_id}
+        select * from room_record where r_id=#{r_id} and state=1
     </select>
 </mapper>

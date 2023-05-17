@@ -11,13 +11,13 @@
         select * from user where id=#{id}
     </select>
     <insert id="save"  parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        insert into user(name,account,password,avatar) values(#{name},#{account},#{password},#{avatar})
+        insert into user(name,account,password,avatar) values(#{user.name},#{user.account},#{user.password},#{user.avatar})
     </insert>
     <delete id="delete" parameterType="int">
         delete from user where id=#{id}
     </delete>
     <update id="update" parameterType="User">
-        update from user name=#{name},account=#{account},password=#{password},avatar=#{avatar} where id=#{id}
+        update user set name=#{name},account=#{account},password=#{password},avatar=#{avatar} where id=#{id}
     </update>
     <select id="login" parameterType="string" resultType="user">
         select * from user where account=#{account} and password=#{password}

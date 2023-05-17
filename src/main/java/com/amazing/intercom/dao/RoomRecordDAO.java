@@ -1,6 +1,7 @@
 package com.amazing.intercom.dao;
 
 import com.amazing.intercom.pojo.RoomRecord;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface RoomRecordDAO {
     int update(RoomRecord roomRecord);
     int countByRS(int r_id);
     int countByR(int r_id);
-    int countByUR(int u_id,int r_id);
+    int countByUR(@Param("u_id") int u_id,@Param("r_id") int r_id);
 }
