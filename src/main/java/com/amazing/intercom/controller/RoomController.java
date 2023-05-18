@@ -56,7 +56,8 @@ public class RoomController {
     }
     @PostMapping("/updateRoom")
     @ResponseBody
-    public boolean update(Room room){
+    public boolean update(int id,String name,String introduction,String type,int owner){
+        Room room = new Room(id, name, introduction, type, owner);
         return rs.updateRoom(room);
     }
 }

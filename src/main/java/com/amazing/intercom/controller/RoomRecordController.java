@@ -21,32 +21,33 @@ public class RoomRecordController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/history/{r_id}")
+    @GetMapping("/history")
     @ResponseBody
-    public String history(@PathVariable int r_id, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10")int size){
+    public String history(int r_id, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10")int size){
         PageHelper.startPage(start,size);
         List<RoomRecord> roomRecords = rrs.historyRR(r_id);
         return JSON.toJSONString(roomRecords);
     }
 
-    @GetMapping("/onlineMans/{r_id}")
+    @GetMapping("/onlineMans")
     @ResponseBody
-    public int online(@PathVariable int r_id){
+    public int online(int r_id){
         return rrs.onlineN(r_id);
     }
-    @GetMapping("/historyMans/{r_id}")
+    @GetMapping("/historyMans")
     @ResponseBody
-    public int historyN(@PathVariable int r_id){
+    public int historyN(int r_id){
         return rrs.historyN(r_id);
     }
     @PostMapping("/addRoomRecord")
     @ResponseBody
-    public int add(RoomRecord rr){
-        return rrs.addRR(rr);
+    public int add(int u_id,int f_u_id,int state){
+        RoomRecord roomRecord = new RoomRecord(0,u_id,f_u_id,state);
+        return rrs.addRR(roomRecord);
     }
-    @GetMapping("/deleteRoomRecord/{id}")
+    @GetMapping("/deleteRoomRecord")
     @ResponseBody
-    public boolean delete(@PathVariable int id){
+    public boolean delete(int id){
         return rrs.deleteRR(id);
     }
     @GetMapping("/outRoom")

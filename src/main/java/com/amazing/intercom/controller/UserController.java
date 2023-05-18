@@ -22,7 +22,7 @@ public class UserController {
     @GetMapping("/addUser")
     @ResponseBody
     public String add(String name,String account,String password,String avatar){
-        if (avatar=="") avatar="fav.png";
+        if (avatar.equals("")) avatar="fav.png";
         User user = new User(0, name, account, password, avatar);
         //如果账号存在，则不能新建
         if (userService.getUserByAccount(user.getAccount())!=0)
@@ -37,12 +37,14 @@ public class UserController {
     }
     @PostMapping("/modifyUser")
     @ResponseBody
-    public boolean modify(User user){
-        return userService.modifyUser(user);
+    public String modify(int id,String name,String account,String password,String avatar){
+
+        User user = new User(id, name, account, password, avatar);
+        return JSON.toJSONString(userService.modifyUser(user));
     }
     @GetMapping("/deleteUser")
     @ResponseBody
-    public boolean delete(int id){
-        return userService.deleteUser(id);
+    public String delete(int id){
+        return JSON.toJSONString(userService.deleteUser(id));
     }
 }

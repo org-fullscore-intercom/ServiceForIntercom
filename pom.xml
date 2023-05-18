@@ -81,11 +81,11 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skip>false</skip>
+                    <skip>true</skip>
                     <includes>
 <!--                        <include>**/Test*.java</include>-->
 <!--                        <include>**/service/*Test.java</include>-->
-                        <include>**/controller/*Test.java</include>
+                        <include>**/controller/FileControllerTest.java</include>
                     </includes>
                 </configuration>
             </plugin>

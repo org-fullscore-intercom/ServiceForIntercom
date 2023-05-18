@@ -49,6 +49,8 @@ public class RoomRecordServiceImpl implements RoomRecordService{
     @Override
     public boolean come(int u_id, int r_id) {
         RoomRecord rr = new RoomRecord(0, u_id, r_id, 1);
+        if (rrDao.countByUR(u_id,r_id)==0)
+            return rrDao.save(rr)!=0;
         return rrDao.update(rr)==1;
     }
 

@@ -23,7 +23,7 @@ public class TestRoomDAO {
     }
     @Test
     public void delete(){
-        System.out.println(dao.delete(52));
+        System.out.println(dao.delete(-1));
     }
     @Test
     public void get(){
