@@ -2,6 +2,7 @@ package com.amazing.intercom.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,11 +22,12 @@ public class FileController {
                 return "文件为空";
             }
             //获取文件名
-            String fileName=file.getOriginalFilename();
+//            String fileName=file.getOriginalFilename();
+            String fileName=System.currentTimeMillis()+".png";
             System.out.println("上传的文件名："+fileName);
             //获取文件后缀名
-            String suffixName=fileName.substring(fileName.lastIndexOf("."));
-            System.out.println("文件后缀名："+suffixName);
+//            String suffixName=fileName.substring(fileName.lastIndexOf("."));
+//            System.out.println("文件后缀名："+suffixName);
             //设置文件存储路径
 //            String filePath="../../../../resources/static/avatar/";
             String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\avatar\\";
@@ -37,7 +39,9 @@ public class FileController {
             }
             //写入文件
             file.transferTo(dest);
-            return "上传成功!";
+            String res="http://192.168.31.29:8080/static/avatar/";
+            System.out.println(res+fileName);
+            return res+fileName;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,7 +116,8 @@ public class FileController {
             }
             //写入文件
             file.transferTo(dest);
-            return fileName;
+            String res="http://192.168.31.29:8080/static/sounds/";
+            return res+fileName;
         } catch (Exception e) {
             e.printStackTrace();
         }

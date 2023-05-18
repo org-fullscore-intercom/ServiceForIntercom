@@ -1,20 +1,27 @@
 package com.amazing.intercom.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.amazing.intercom.pojo.Follow;
 import com.amazing.intercom.pojo.Room;
 import com.amazing.intercom.pojo.Type;
+import com.amazing.intercom.service.FollowService;
 import com.amazing.intercom.service.RoomService;
+import com.amazing.intercom.service.UserService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class RoomController {
     @Autowired
     private RoomService rs;
+    @Autowired
+    private FollowService fs;
+
     @GetMapping("/addRoom")
     @ResponseBody
     public int add(String name, String introduction, String type, int owner){
@@ -53,6 +60,18 @@ public class RoomController {
         PageHelper.startPage(start,size);
         List<Room> roomsByOwner = rs.getRoomsByOwner(owner);
         return JSON.toJSONString(roomsByOwner);
+    }
+    @GetMapping("/allUsersRooms")
+    @ResponseBody
+    public String usersRooms(int u_id,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "10")int size){
+        PageHelper.startPage(start,size);
+        List<Follow> follows = fs.getFollows(u_id);
+        ArrayList<Room> rooms=new ArrayList<>();
+        for (Follow f:follows){
+            List<Room> roomsByOwner = rs.getRoomsByOwner(f.getF_u_id());
+            rooms.addAll(roomsByOwner);
+        }
+        return JSON.toJSONString(rooms);
     }
     @PostMapping("/updateRoom")
     @ResponseBody
