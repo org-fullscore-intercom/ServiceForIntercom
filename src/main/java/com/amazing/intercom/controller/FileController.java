@@ -30,7 +30,7 @@ public class FileController {
 //            System.out.println("文件后缀名："+suffixName);
             //设置文件存储路径
 //            String filePath="../../../../resources/static/avatar/";
-            String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\avatar\\";
+            String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\avatar\\";
             String path=filePath2+fileName;
             File dest=new File(path);
             //检测是否存在该目录
@@ -39,7 +39,7 @@ public class FileController {
             }
             //写入文件
             file.transferTo(dest);
-            String res="http://192.168.31.29:8080/static/avatar/";
+            String res="http://192.168.31.29:8080/upload/avatar/";
             System.out.println(res+fileName);
             return res+fileName;
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class FileController {
         String fileName=request.getParameter("fileName");
         System.out.println("下载文件:"+fileName);
         if (fileName!=null){
-            String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\avatar\\";
+            String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\avatar\\";
             File file =new File(filePath2+fileName);
             if (file.exists()){
                 response.setContentType("application/force-download");
@@ -107,7 +107,7 @@ public class FileController {
             String fileName=System.currentTimeMillis()+".wav";
             System.out.println("将上传的文件名："+fileName);
             //设置文件存储路径
-            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\sounds\\";
+            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\sound\\";
             String path=filePath+fileName;
             File dest=new File(path);
             //检测是否存在该目录
@@ -116,7 +116,7 @@ public class FileController {
             }
             //写入文件
             file.transferTo(dest);
-            String res="http://192.168.31.29:8080/static/sounds/";
+            String res="http://192.168.31.29:8080/upload/sound/";
             return res+fileName;
         } catch (Exception e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class FileController {
         String fileName=request.getParameter("fileName");
         System.out.println("下载sound文件:"+fileName);
         if (fileName!=null){
-            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\src\\main\\resources\\static\\sounds\\";
+            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\sound\\";
             File file =new File(filePath+fileName);
             if (file.exists()){
                 response.setContentType("application/force-download");
