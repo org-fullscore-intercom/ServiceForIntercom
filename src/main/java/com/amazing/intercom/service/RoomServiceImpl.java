@@ -1,7 +1,9 @@
 package com.amazing.intercom.service;
 
 import com.amazing.intercom.dao.RoomDAO;
+import com.amazing.intercom.dao.RoomRecordDAO;
 import com.amazing.intercom.pojo.Room;
+import com.amazing.intercom.pojo.RoomRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,9 @@ import java.util.List;
 public class RoomServiceImpl implements RoomService{
     @Autowired
     private RoomDAO roomDAO;
+    @Autowired
+    private RoomRecordDAO roomRecordDAO;
+
     @Override
     public int addRoom(Room room) {
         roomDAO.save(room);
@@ -18,6 +23,11 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public boolean deleteRoom(int id) {
+        //因为外键限制，在删除该房间之前，需要把所有含有该r_id的记录都删除
+        List<RoomRecord> byR = roomRecordDAO.findByR(id);
+        for (RoomRecord rr:byR){
+            roomRecordDAO.delete(rr.getId());
+        }
         return roomDAO.delete(id)==1;
     }
 
