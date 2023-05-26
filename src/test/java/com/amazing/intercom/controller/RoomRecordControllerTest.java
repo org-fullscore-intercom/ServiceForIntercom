@@ -1,4 +1,4 @@
 package com.amazing.intercom.controller;
 
-public class UserController {
+public class RoomRecordControllerTest {
 }

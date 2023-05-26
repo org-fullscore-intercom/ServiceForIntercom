@@ -16,165 +16,67 @@ import java.io.*;
 public class FileController {
     @PostMapping("/upload_avatar")
     @ResponseBody
-    public String uploadAvatar(MultipartFile file){
+    public String uploadAvatar(MultipartFile file) {
         try {
-            if (file.isEmpty()){
+            if (file.isEmpty()) {
                 return "文件为空";
             }
             //获取文件名
 //            String fileName=file.getOriginalFilename();
-            String fileName=System.currentTimeMillis()+".png";
-            System.out.println("上传的文件名："+fileName);
+            String fileName = System.currentTimeMillis() + ".png";
+            System.out.println("上传的文件名：" + fileName);
             //获取文件后缀名
 //            String suffixName=fileName.substring(fileName.lastIndexOf("."));
 //            System.out.println("文件后缀名："+suffixName);
             //设置文件存储路径
 
-//            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\avatar\\";
-            String filePath="/home/upload/avatar/";
-            String path=filePath+fileName;
-            File dest=new File(path);
+            String filePath = "C:\\Users\\Toreme\\Desktop\\intercom\\upload\\avatar\\";
+//            String filePath="/home/upload/avatar/";
+            String path = filePath + fileName;
+            File dest = new File(path);
             //检测是否存在该目录
-            if (!dest.getParentFile().exists()){
-                boolean flag=dest.getParentFile().mkdirs();
+            if (!dest.getParentFile().exists()) {
+                boolean flag = dest.getParentFile().mkdirs();
             }
             //写入文件
             file.transferTo(dest);
-//            String res="http://192.168.31.29:8080/upload/avatar/";
-            String res="http://47.113.221.177:8000/upload/avatar/";
-            System.out.println(res+fileName);
-            return res+fileName;
+            String res = "http://192.168.31.29:8080/upload/avatar/";
+//            String res="http://47.113.221.177:8000/upload/avatar/";
+            System.out.println(res + fileName);
+            return res + fileName;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "上传失败";
     }
-    @GetMapping("/download_avatar")
-    @ResponseBody
-    public String downloadAvatar(HttpServletRequest request, HttpServletResponse response){
-        String fileName=request.getParameter("fileName");
-        System.out.println("下载文件:"+fileName);
-        if (fileName!=null){
-            String filePath2="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\avatar\\";
-            File file =new File(filePath2+fileName);
-            if (file.exists()){
-                response.setContentType("application/force-download");
-                response.addHeader("Content-Disposition","attachment;fileName="+fileName);
-                byte[] buffer=new byte[1024];
-                FileInputStream fis =null;
-                BufferedInputStream bis = null;
-                try{
-                    fis=new FileInputStream(file);
-                    response.setContentLength(fis.available());
-                    bis=new BufferedInputStream(fis);
-                    OutputStream os=response.getOutputStream();
-                    int i = bis.read(buffer);
-                    while(i!=-1){
-                        os.write(buffer,0,i);
-                        i=bis.read(buffer);
-                    }
-                    os.flush();
-                    os.close();
-                    return "下载成功";
-                }catch (Exception e){
-                    e.printStackTrace();
-                }finally {
-                    if (bis!=null){
-                        try {
-                            bis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (fis!=null){
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-        return "下载失败";
-    }
+
     @PostMapping("/upload_sound")
     @ResponseBody
-    public String uploadSound(MultipartFile file){
+    public String uploadSound(MultipartFile file) {
         try {
-            if (file.isEmpty()){
+            if (file.isEmpty()) {
                 return "文件为空";
             }
             //获取文件名
-            String fileName=System.currentTimeMillis()+".wav";
-            System.out.println("将上传的文件名："+fileName);
+            String fileName = System.currentTimeMillis() + ".wav";
+            System.out.println("将上传的文件名：" + fileName);
             //设置文件存储路径
-//            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\sound\\";
-            String filePath="/home/upload/sound/";
-            String path=filePath+fileName;
-            File dest=new File(path);
+            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\sound\\";
+//            String filePath = "/home/upload/sound/";
+            String path = filePath + fileName;
+            File dest = new File(path);
             //检测是否存在该目录
-            if (!dest.getParentFile().exists()){
-                boolean flag=dest.getParentFile().mkdirs();
+            if (!dest.getParentFile().exists()) {
+                boolean flag = dest.getParentFile().mkdirs();
             }
             //写入文件
             file.transferTo(dest);
-//            String res="http://192.168.31.29:8080/upload/sound/";
-            String res="http://47.113.221.177/upload/sound/";
-            return res+fileName;
+            String res="http://192.168.31.29:8080/upload/sound/";
+//            String res = "http://47.113.221.177:8000/upload/sound/";
+            return res + fileName;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @GetMapping("/download_sound")
-    @ResponseBody
-    public String downloadSound(HttpServletRequest request, HttpServletResponse response){
-        String fileName=request.getParameter("fileName");
-        System.out.println("下载sound文件:"+fileName);
-        if (fileName!=null){
-            String filePath="C:\\Users\\Toreme\\Desktop\\intercom\\upload\\sound\\";
-            File file =new File(filePath+fileName);
-            if (file.exists()){
-                response.setContentType("application/force-download");
-                response.addHeader("Content-Disposition","attachment;fileName="+fileName);
-                byte[] buffer=new byte[1024];
-                FileInputStream fis =null;
-                BufferedInputStream bis = null;
-                try{
-                    fis=new FileInputStream(file);
-                    response.setContentLength(fis.available());
-                    bis=new BufferedInputStream(fis);
-                    OutputStream os=response.getOutputStream();
-                    int i = bis.read(buffer);
-                    while(i!=-1){
-                        os.write(buffer,0,i);
-                        i=bis.read(buffer);
-                    }
-                    os.flush();
-                    os.close();
-                    return "下载成功";
-                }catch (Exception e){
-                    e.printStackTrace();
-                }finally {
-                    if (bis!=null){
-                        try {
-                            bis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (fis!=null){
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-        return "下载失败";
     }
 }

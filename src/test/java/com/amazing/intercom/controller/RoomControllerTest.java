@@ -14,15 +14,15 @@ public class RoomControllerTest {
     private RoomController roomController;
     @Test
     public void add() {
-        System.out.println(roomController.add("test", "a test room", "4280391411", 1));
+        System.out.println(roomController.add("test2", "a test room", "4280391411", 1));
     }
     @Test
     public void delete(){
-        System.out.println(roomController.delete(53));
+        System.out.println(roomController.delete(5));
     }
     @Test
     public void get(){
-        System.out.println(roomController.get(1));
+        System.out.println(roomController.get(4));
     }
     @Test
     public void gets(){
@@ -38,7 +38,7 @@ public class RoomControllerTest {
     }
     @Test
     public void update(){
-//        Room room = new Room(1,"test","a test room","4280391411",1);
-//        System.out.println(roomController.update(room));
+        Room room = new Room(4,"wswsws","a test room","4280391411",1);
+        System.out.println(roomController.update(room.getId(),room.getName(),room.getIntroduction(),room.getType(),room.getOwner()));
     }
 }
