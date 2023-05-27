@@ -42,7 +42,7 @@ public class FollowControllerTest {
                 MockMvcRequestBuilders.get("/addFollow")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("u_id", "1")
-                        .param("f_u_id","5");
+                        .param("f_u_id","6");
 
 
         // 发送请求并验证返回结果
@@ -60,7 +60,7 @@ public class FollowControllerTest {
                 MockMvcRequestBuilders.get("/deleteFollow")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("u_id", "1")
-                        .param("f_u_id","6");
+                        .param("f_u_id","5");
 
 
         // 发送请求并验证返回结果

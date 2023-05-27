@@ -112,7 +112,7 @@ public class UserControllerTest {
         MockHttpServletRequestBuilder requestBuilder =
                 MockMvcRequestBuilders.get("/deleteUser")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .param("id", "5");
+                        .param("id", "7");
 
 
         // 发送请求并验证返回结果

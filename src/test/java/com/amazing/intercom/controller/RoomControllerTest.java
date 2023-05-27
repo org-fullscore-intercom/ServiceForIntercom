@@ -14,11 +14,11 @@ public class RoomControllerTest {
     private RoomController roomController;
     @Test
     public void add() {
-        System.out.println(roomController.add("test2", "a test room", "4280391411", 1));
+        System.out.println(roomController.add("test3", "a test room", "4280391411", 1));
     }
     @Test
     public void delete(){
-        System.out.println(roomController.delete(5));
+        System.out.println(roomController.delete(6));
     }
     @Test
     public void get(){

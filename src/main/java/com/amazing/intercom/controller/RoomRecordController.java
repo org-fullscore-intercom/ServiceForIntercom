@@ -31,7 +31,7 @@ public class RoomRecordController {
 
     @GetMapping("/onlineMans")
     @ResponseBody
-    public int online(int r_id){
+    public int onlineN(int r_id){
         return rrs.onlineN(r_id);
     }
     @GetMapping("/historyMans")
@@ -41,8 +41,8 @@ public class RoomRecordController {
     }
     @PostMapping("/addRoomRecord")
     @ResponseBody
-    public int add(int u_id,int f_u_id,int state){
-        RoomRecord roomRecord = new RoomRecord(0,u_id,f_u_id,state);
+    public int add(int u_id,int r_id,int state){
+        RoomRecord roomRecord = new RoomRecord(0,u_id,r_id,state);
         return rrs.addRR(roomRecord);
     }
     @GetMapping("/deleteRoomRecord")
