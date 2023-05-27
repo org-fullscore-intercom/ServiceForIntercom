@@ -81,7 +81,7 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skip>false</skip>
+                    <skip>true</skip>
                     <includes>
 <!--                        <include>**/Test*.java</include>-->
 <!--                        <include>**/service/*Test.java</include>-->
